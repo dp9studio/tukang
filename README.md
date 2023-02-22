@@ -1,2 +1,2 @@
 # tukang
-A tool to help automate creating .ai templates for artworks.
+A tool to help automate .ai template creation for artworks.
