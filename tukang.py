@@ -1,17 +1,17 @@
-# TUKANG V0.01
+# TUKANG V0.02
 
 import svgwrite
 import os
 
 # Startup message
 
-print("Running tukang v0.01..")
+print("Running tukang v0.02..")
 print(r"""
     __         __                   
    / /_ __ __ / /__ ___ _ ___  ___ _
   / __// // //  '_// _ `// _ \/ _ `/
   \__/ \_,_//_/\_\ \_,_//_//_/\_, / 
-                             /___/  v0.01  
+                             /___/  v0.02  
 """)
 
 while True:
@@ -23,34 +23,32 @@ while True:
     filename = filename.format(count)
 
     # Prompt user for box dimensions in meters
-    height1_m = float(input("Enter body height in meters (or enter 'exit' to quit): "))
-    if height1_m == 'exit':
-        break
-    height2_m = float(input("Enter footer height (in meters): "))
-    if height2_m == 'exit':
-        break
     width1_m = float(input("Enter length (in meters): "))
-    if width1_m == 'exit':
-        break
     width2_m = float(input("Enter width (in meters): "))
-    if width2_m == 'exit':
-        break
+    height1_m = float(input("Enter body height (in meters): "))
+    height2_m = float(input("Enter footer height (in meters): "))
     
     # Convert meter values to SVG units (points)
-    height1 = height1_m * 2834.6456692913
-    height2 = height2_m * 2834.6456692913
-    width1 = width1_m * 2834.6456692913
-    width2 = width2_m * 2834.6456692913
+    width1 = width1_m * 2834.64
+    width2 = width2_m * 2834.64
+    height1 = height1_m * 2834.64
+    height2 = height2_m * 2834.64
     
     # Calculate box size and position
     box_width = width1 + width2
     box_height = height1 + height2
-    box_x = max(0, (width2 - width1) / 2)
-    box_y = max(0, (height2 - height1) / 2)
+    if width2 < width1:
+        box_x = max(0, (width2 - width1) / 2)
+    else:
+        box_x = max(0, (width1 - width2) / 2)
+    if height2 < height1:
+        box_y = max(0, (height2 - height1) / 2)
+    else:
+        box_y = max(0, (height1 - height2) / 2)
     
     # Calculate font size
     if box_height > box_width:
-        text_size = int(width2 / 3)
+        text_size = int(width2 / 4)
     else:
         text_size = int(box_height / 10)
     # Set font of the text
