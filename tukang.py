@@ -105,5 +105,5 @@ while True:
     dwg.add(text_right)
 
     dwg.save()
-    print("File generated!\n")
+    print(filename + " generated!\n")
     count += 1
