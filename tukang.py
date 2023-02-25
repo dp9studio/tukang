@@ -3,6 +3,17 @@
 import svgwrite
 import os
 
+# Startup message
+
+print("Running tukang v0.01..")
+print(r"""
+    __         __                   
+   / /_ __ __ / /__ ___ _ ___  ___ _
+  / __// // //  '_// _ `// _ \/ _ `/
+  \__/ \_,_//_/\_\ \_,_//_//_/\_, / 
+                             /___/  v0.01  
+""")
+
 while True:
     # Check if the filename already exists
     count = 1
@@ -10,17 +21,6 @@ while True:
     while os.path.isfile(filename.format(count)):
         count += 1
     filename = filename.format(count)
-
-    # Startup message
-
-    print("Running tukang v0.01..")
-    print(r"""
-    __         __                   
-   / /_ __ __ / /__ ___ _ ___  ___ _
-  / __// // //  '_// _ `// _ \/ _ `/
-  \__/ \_,_//_/\_\ \_,_//_//_/\_, / 
-                             /___/  v0.01  
-""")
 
     # Prompt user for box dimensions in meters
     height1_m = float(input("Enter body height in meters (or enter 'exit' to quit): "))
@@ -37,10 +37,10 @@ while True:
         break
     
     # Convert meter values to SVG units (points)
-    height1 = height1_m * 1000
-    height2 = height2_m * 1000
-    width1 = width1_m * 1000
-    width2 = width2_m * 1000
+    height1 = height1_m * 2834.6456692913
+    height2 = height2_m * 2834.6456692913
+    width1 = width1_m * 2834.6456692913
+    width2 = width2_m * 2834.6456692913
     
     # Calculate box size and position
     box_width = width1 + width2
@@ -105,4 +105,5 @@ while True:
     dwg.add(text_right)
 
     dwg.save()
+    print("File generated!\n")
     count += 1
