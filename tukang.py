@@ -29,10 +29,10 @@ while True:
     height2_m = float(input("Enter footer height (in meters): "))
     
     # Convert meter values to SVG units (points)
-    width1 = width1_m * 2834.64
-    width2 = width2_m * 2834.64
-    height1 = height1_m * 2834.64
-    height2 = height2_m * 2834.64
+    width1 = width1_m * 2834.645
+    width2 = width2_m * 2834.645
+    height1 = height1_m * 2834.645
+    height2 = height2_m * 2834.645
     
     # Calculate box size and position
     box_width = width1 + width2
