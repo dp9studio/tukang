@@ -4,8 +4,6 @@
       \__/ \_,_//_/\_\ \_,_//_//_/\_, / 
                                  /___/  v0.02  
 
-A tool to help automate .ai template creation for artworks.
-
 ## Current Features
 - Able to generate a simple 8 x 2 template for mural schematics based on given measurements **(in meters)**.
 
