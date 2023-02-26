@@ -2,7 +2,7 @@
        / /_ __ __ / /__ ___ _ ___  ___ _
       / __// // //  '_// _ `// _ \/ _ `/
       \__/ \_,_//_/\_\ \_,_//_//_/\_, / 
-                                 /___/  v0.02  
+                                 /___/  v0.03  
 
 ## Current Features
 - Able to generate a simple 8 x 2 template for mural schematics based on given measurements **(in meters)**.

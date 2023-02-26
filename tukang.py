@@ -1,18 +1,21 @@
-# TUKANG V0.02
+# TUKANG V0.03
 
 import svgwrite
 import os
 
 # Startup message
 
-print("Running tukang v0.02..")
+print("Running tukang v0.03..")
 print(r"""
     __         __                   
    / /_ __ __ / /__ ___ _ ___  ___ _
   / __// // //  '_// _ `// _ \/ _ `/
   \__/ \_,_//_/\_\ \_,_//_//_/\_, / 
-                             /___/  v0.02  
+                             /___/  v0.03  
 """)
+
+# Prompt user for unit of measurement
+unit_input = input("Enter a unit of measurement to use (m, cm, mm, px, pt): ")
 
 while True:
     # Check if the filename already exists
@@ -22,18 +25,54 @@ while True:
         count += 1
     filename = filename.format(count)
 
-    # Prompt user for box dimensions in meters
-    width1_m = float(input("Enter length (in meters): "))
-    width2_m = float(input("Enter width (in meters): "))
-    height1_m = float(input("Enter body height (in meters): "))
-    height2_m = float(input("Enter footer height (in meters): "))
-    
-    # Convert meter values to SVG units (points)
-    width1 = width1_m * 2834.645
-    width2 = width2_m * 2834.645
-    height1 = height1_m * 2834.645
-    height2 = height2_m * 2834.645
-    
+    # Check what the user inputed as unit of measurement
+    if unit_input == 'm':
+        # Prompt user for box dimensions in metres
+        width1_input = float(input("Enter length (in metres): "))
+        width2_input = float(input("Enter width (in metres): "))
+        height1_input = float(input("Enter body height (in metres): "))
+        height2_input = float(input("Enter footer height (in metres): "))
+        # Amount of points equivalent to metres
+        unit2point = 2834.645
+    if unit_input == 'cm':
+        # Prompt user for box dimensions in centimetres
+        width1_input = float(input("Enter length (in centimetres): "))
+        width2_input = float(input("Enter width (in centimetres): "))
+        height1_input = float(input("Enter body height (in centimetres): "))
+        height2_input = float(input("Enter footer height (in centimetres): "))
+        # Amount of points equivalent to centimetres
+        unit2point = 28.34645
+    if unit_input == 'mm':
+        # Prompt user for box dimensions in millimetres
+        width1_input = float(input("Enter length (in millimetres): "))
+        width2_input = float(input("Enter width (in millimetres): "))
+        height1_input = float(input("Enter body height (in millimetres): "))
+        height2_input = float(input("Enter footer height (in millimetres): "))
+        # Amount of points equivalent to millimetres
+        unit2point = 2.834645
+    if unit_input == 'px':
+        # Prompt user for box dimensions in pixels
+        width1_input = float(input("Enter length (in pixels): "))
+        width2_input = float(input("Enter width (in pixels): "))
+        height1_input = float(input("Enter body height (in pixels): "))
+        height2_input = float(input("Enter footer height (in pixels): "))
+        # Amount of points equivalent to pixels
+        unit2point = 1
+    if unit_input == 'pt':
+        # Prompt user for box dimensions in points
+        width1_input = float(input("Enter length (in points): "))
+        width2_input = float(input("Enter width (in points): "))
+        height1_input = float(input("Enter body height (in points): "))
+        height2_input = float(input("Enter footer height (in points): "))
+        # Amount of points equivalent to points
+        unit2point = 1
+
+    # Converts the inputed values into SVG usable units (points)
+    width1 = width1_input * unit2point
+    width2 = width2_input * unit2point
+    height1 = height1_input * unit2point
+    height2 = height2_input * unit2point
+
     # Calculate box size and position
     box_width = width1 + width2
     box_height = height1 + height2
