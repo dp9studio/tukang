@@ -17,7 +17,7 @@ print(r"""
 while True:
     # Check if the filename already exists
     count = 1
-    filename = 'ROL-ZONE1_{}.svg'
+    filename = 'ROL-ZONE2_{}.svg'
     while os.path.isfile(filename.format(count)):
         count += 1
     filename = filename.format(count)
@@ -104,4 +104,3 @@ while True:
 
     dwg.save()
     print(filename + " generated!\n")
-    count += 1
