@@ -1,11 +1,10 @@
 # TUKANG V0.03
-
 import svgwrite
 import os
+import sys
 
 # Startup message
-
-print("Running tukang v0.03..")
+print("\nRunning tukang v0.03..")
 print(r"""
     __         __                   
    / /_ __ __ / /__ ___ _ ___  ___ _
@@ -14,8 +13,138 @@ print(r"""
                              /___/  v0.03  
 """)
 
-# Prompt user for unit of measurement
-unit_input = input("Enter a unit of measurement to use (m, cm, mm, px, pt): ")
+def program_exit():
+    print("Exiting the bengkel..\n")
+    sys.tracebacklimit = 0
+    sys.exit(0)
+
+def program_help():
+    # Print the commands to the user
+    print("\n")
+    print("Exit/quit the program: !exit")
+    print("Change the unit of measurement: !settings")
+    print("\n")
+
+def program_setting():
+    global unit_output
+    # Prompt user for unit of measurement
+    while True:
+        unit_input = input("Enter a unit of measurement to use (m, cm, mm, px, pt): ")
+        if unit_input == '!exit':
+            program_exit()
+        elif unit_input == '!help':
+            program_help()
+            continue
+        elif unit_input not in ('m', 'cm', 'mm', 'px', 'pt'):
+            print("Invalid input or command!")
+            continue
+        elif unit_input == 'm':
+            print("Input the following measurements in metres.\n")
+        elif unit_input == 'cm':
+            print("Input the following measurements in centimetres.\n")
+        elif unit_input == 'mm':
+            print("Input the following measurements in millimetres.\n")
+        elif unit_input == 'px':
+            print("Input the following measurements in pixels.\n")
+        elif unit_input == 'pt':
+            print("Input the following measurements in points.\n")
+        unit_output = unit_input
+        break
+
+def is_float(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+def check_unit_input():
+    # Default values
+    restart_unit_input = False
+    width1_input = 0
+    width2_input = 0
+    height1_input = 0
+    height2_input = 0
+
+    while True:
+        if restart_unit_input:
+            restart_unit_input = False
+            continue
+        # Prompt user for box dimensions in the requested unit of measurement
+        while not restart_unit_input:
+            width1_input = input("Enter length: ")
+            if width1_input == '!exit':
+                program_exit()
+            if width1_input == '!help':
+                program_help()
+                continue
+            if width1_input == '!settings':
+                restart_unit_input = True
+                program_setting()
+                break
+            if not is_float(width1_input):
+                print("Error! Integers only.")
+                continue
+            width1_input = float(width1_input)
+            break
+
+        while not restart_unit_input:
+            width2_input = input("Enter width: ")
+            if width2_input == '!exit':
+                program_exit()
+            if width2_input == '!help':
+                program_help()
+                continue
+            if width2_input == '!settings':
+                restart_unit_input = True
+                program_setting()
+                break
+            if not is_float(width2_input):
+                print("Error! Integers only.")
+                continue
+            width2_input = float(width2_input)
+            break
+
+        while not restart_unit_input:
+            height1_input = input("Enter body height: ")
+            if height1_input == '!exit':
+                program_exit()
+            if height1_input == '!help':
+                program_help()
+                continue
+            if height1_input == '!settings':
+                restart_unit_input = True
+                program_setting()
+                break
+            if not is_float(height1_input):
+                print("Error! Integers only.")
+                continue
+            height1_input = float(height1_input)
+            break
+
+        while not restart_unit_input:
+            height2_input = input("Enter footer height: ")
+            if height2_input == '!exit':
+                program_exit()
+            if height2_input == '!help':
+                program_help()
+                continue
+            if height2_input == '!settings':
+                restart_unit_input = True
+                program_setting()
+                break
+            if not is_float(height2_input):
+                print("Error! Integers only.")
+                continue
+            height2_input = float(height2_input)
+            break
+        
+        return width1_input, width2_input, height1_input, height2_input, restart_unit_input
+
+# Print the help command to the user
+print("\nType !help for program commands\n")
+
+program_setting()
 
 while True:
     # Check if the filename already exists
@@ -26,52 +155,42 @@ while True:
     filename = filename.format(count)
 
     # Check what the user inputed as unit of measurement
-    if unit_input == 'm':
-        # Prompt user for box dimensions in metres
-        width1_input = float(input("Enter length (in metres): "))
-        width2_input = float(input("Enter width (in metres): "))
-        height1_input = float(input("Enter body height (in metres): "))
-        height2_input = float(input("Enter footer height (in metres): "))
+    if unit_output == 'm':
+        width1_output, width2_output, height1_output, height2_output, restart_unit_output = check_unit_input()
+        if restart_unit_output:
+            continue
         # Amount of points equivalent to metres
         unit2point = 2834.645
-    if unit_input == 'cm':
-        # Prompt user for box dimensions in centimetres
-        width1_input = float(input("Enter length (in centimetres): "))
-        width2_input = float(input("Enter width (in centimetres): "))
-        height1_input = float(input("Enter body height (in centimetres): "))
-        height2_input = float(input("Enter footer height (in centimetres): "))
+    if unit_output == 'cm':
+        width1_output, width2_output, height1_output, height2_output, restart_unit_output = check_unit_input()
+        if restart_unit_output:
+            continue
         # Amount of points equivalent to centimetres
         unit2point = 28.34645
-    if unit_input == 'mm':
-        # Prompt user for box dimensions in millimetres
-        width1_input = float(input("Enter length (in millimetres): "))
-        width2_input = float(input("Enter width (in millimetres): "))
-        height1_input = float(input("Enter body height (in millimetres): "))
-        height2_input = float(input("Enter footer height (in millimetres): "))
+    if unit_output == 'mm':
+        width1_output, width2_output, height1_output, height2_output, restart_unit_output = check_unit_input()
+        if restart_unit_output:
+            continue
         # Amount of points equivalent to millimetres
         unit2point = 2.834645
-    if unit_input == 'px':
-        # Prompt user for box dimensions in pixels
-        width1_input = float(input("Enter length (in pixels): "))
-        width2_input = float(input("Enter width (in pixels): "))
-        height1_input = float(input("Enter body height (in pixels): "))
-        height2_input = float(input("Enter footer height (in pixels): "))
+    if unit_output == 'px':
+        width1_output, width2_output, height1_output, height2_output, restart_unit_output = check_unit_input()
+        if restart_unit_output:
+            continue
         # Amount of points equivalent to pixels
         unit2point = 1
-    if unit_input == 'pt':
-        # Prompt user for box dimensions in points
-        width1_input = float(input("Enter length (in points): "))
-        width2_input = float(input("Enter width (in points): "))
-        height1_input = float(input("Enter body height (in points): "))
-        height2_input = float(input("Enter footer height (in points): "))
+    if unit_output == 'pt':
+        width1_output, width2_output, height1_output, height2_output, restart_unit_output = check_unit_input()
+        if restart_unit_output:
+            continue
         # Amount of points equivalent to points
         unit2point = 1
 
     # Converts the inputed values into SVG usable units (points)
-    width1 = width1_input * unit2point
-    width2 = width2_input * unit2point
-    height1 = height1_input * unit2point
-    height2 = height2_input * unit2point
+    width1 = width1_output * unit2point
+    width2 = width2_output * unit2point
+    height1 = height1_output * unit2point
+    height2 = height2_output * unit2point
 
     # Calculate box size and position
     box_width = width1 + width2
