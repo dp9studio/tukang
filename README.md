@@ -5,12 +5,11 @@
                                  /___/  v0.03  
 
 ## Current Features
-- Able to generate a simple 8 x 2 template for mural schematics based on given measurements **(in meters)**.
+- Able to generate a simple 8 x 2 template for mural schematics based on given measurements in **standard** measurements (we will only bother with imperial units if requested 😒).
 
 ## Planned Features
 - Ability to generate templates beyond 8 x 2.
 - Ability to generate templates in batches.
-- Ability to choose the unit of measurement.
 - A proper GUI for better ease of use.
 
 ## Setup (WIP)
