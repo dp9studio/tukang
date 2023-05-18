@@ -4,13 +4,13 @@ import os
 import sys
 
 # Startup message
-print("\nRunning tukang v0.03..")
+print("\nRunning tukang v0.04..")
 print(r"""
     __         __                   
    / /_ __ __ / /__ ___ _ ___  ___ _
   / __// // //  '_// _ `// _ \/ _ `/
   \__/ \_,_//_/\_\ \_,_//_//_/\_, / 
-                             /___/  v0.03  
+                             /___/  v0.04  
 """)
 
 def program_exit():
@@ -147,9 +147,12 @@ print("\nType !help for program commands\n")
 program_setting()
 
 while True:
+
+    # Get the name of the current directory
+    current_directory = os.path.basename(os.getcwd())
     # Check if the filename already exists
     count = 1
-    filename = 'ROL-ZONE2_{}.svg'
+    filename = current_directory + '_{}.svg'
     while os.path.isfile(filename.format(count)):
         count += 1
     filename = filename.format(count)
@@ -210,7 +213,7 @@ while True:
     else:
         text_size = int(box_height / 10)
     # Set font of the text
-    text_style = f'font-family: Barlow Condensed; font-size: {text_size}pt; text-anchor: middle;'
+    text_style = f'font-family: Barlow Condensed; font-weight: 400; font-size: {text_size}pt; text-anchor: middle;'
 
     # Create SVG file
     dwg = svgwrite.Drawing(filename, size=(box_width * 2, box_height + (box_height / 5)))
